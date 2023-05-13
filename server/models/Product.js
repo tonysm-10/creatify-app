@@ -1,45 +1,48 @@
 const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
-const thoughtSchema = new Schema({
-  thoughtText: {
-    type: String,
-    required: 'You need to leave a thought!',
-    minlength: 1,
-    maxlength: 280,
-    trim: true,
+const productSchema = new Schema(
+  {
+  productName: {
+      type: String,
+      required: true,
+      unique: true,
+      trim: true
   },
-  thoughtAuthor: {
+  productDescription: {
     type: String,
     required: true,
-    trim: true,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-    get: (timestamp) => dateFormat(timestamp),
-  },
-  comments: [
-    {
-      commentText: {
-        type: String,
-        required: true,
-        minlength: 1,
-        maxlength: 280,
-      },
-      commentAuthor: {
-        type: String,
-        required: true,
-      },
-      createdAt: {
-        type: Date,
-        default: Date.now,
-        get: (timestamp) => dateFormat(timestamp),
-      },
-    },
-  ],
-});
+    unique: true,
+    trim: true
+},
+productCategory: {
+  type: String,
+  required: true,
+  unique: true,
+  trim: true
+},
+productPrice: {
+  type: String,
+  required: true,
+  unique: true,
+  trim: true
+},
+productQuantity: {
+  type: String,
+  required: true,
+  unique: true,
+  trim: true
+},
+productImage: {
+  type: String,
+  required: true,
+  unique: true,
+  trim: true
+},
 
-const Thought = model('Thought', thoughtSchema);
+}
+);
 
-module.exports = Thought;
+const Product = model('Product', productSchema);
+
+module.exports = Product;
