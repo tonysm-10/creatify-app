@@ -1,8 +1,27 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Store, Product } = require('../models');
 const { signToken } = require('../utils/auth');
+const { GraphQLScalarType, Kind } = require('graphql');
 
 const resolvers = {
+  // Add the Date scalar type here
+  Date: new GraphQLScalarType({
+    name: 'Date',
+    description: 'Date custom scalar type',
+    parseValue(value) {
+      return new Date(value);
+    },
+    serialize(value) {
+      return value.getTime();
+    },
+    parseLiteral(ast) {
+      if (ast.kind === Kind.INT) {
+        return new Date(parseInt(ast.value, 10));
+      }
+      return null;
+    },
+  }),
+
   Query: {
     stores: async () => {
       return Store.find().populate('products');
@@ -47,7 +66,7 @@ const resolvers = {
 
       return { token, user };
     },
-    addStore: async (parent, { storeName, colorBackground, phoneNumber, email, storeLogo }) => {
+    addStore: async (parent, { storeName, colorBackground, phoneNumber, email, storeLogo }, context) => {
       if (context.user) {
         const store = await Store.create({
           storeName,
@@ -66,7 +85,7 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    addProduct: async (parent, { storeId, productName, productDescription, productPrice, productImage }) => {
+    addProduct: async (parent, { storeId, productName, productDescription, productPrice, productImage }, context) => {
       if (context.user) {
         const product = await Product.create({
           productName,
@@ -97,6 +116,7 @@ const resolvers = {
 
         return product;
       }
+
       throw new AuthenticationError('You need to be logged in!');
     },
   },
