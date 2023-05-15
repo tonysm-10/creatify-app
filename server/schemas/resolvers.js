@@ -1,25 +1,24 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Thought } = require('../models');
+const { User, Store, Product } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    users: async () => {
-      return User.find().populate('thoughts');
+    stores: async () => {
+      return Store.find().populate('products');
     },
-    user: async (parent, { username }) => {
-      return User.findOne({ username }).populate('thoughts');
+    store: async (parent, { storeId }) => {
+      return Store.findOne({ _id: storeId }).populate('products');
     },
-    thoughts: async (parent, { username }) => {
-      const params = username ? { username } : {};
-      return Thought.find(params).sort({ createdAt: -1 });
+    products: async () => {
+      return Product.find();
     },
-    thought: async (parent, { thoughtId }) => {
-      return Thought.findOne({ _id: thoughtId });
+    product: async (parent, { productId }) => {
+      return Product.findOne({ _id: productId });
     },
     me: async (parent, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('thoughts');
+        return User.findOne({ _id: context.user._id });
       }
       throw new AuthenticationError('You need to be logged in!');
     },
@@ -48,69 +47,55 @@ const resolvers = {
 
       return { token, user };
     },
-    addThought: async (parent, { thoughtText }, context) => {
+    addStore: async (parent, { storeName, colorBackground, phoneNumber, email, storeLogo }) => {
       if (context.user) {
-        const thought = await Thought.create({
-          thoughtText,
-          thoughtAuthor: context.user.username,
+        const store = await Store.create({
+          storeName,
+          colorBackground,
+          phoneNumber,
+          email,
+          storeLogo,
         });
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { thoughts: thought._id } }
+          { $addToSet: { stores: store._id } }
         );
 
-        return thought;
+        return store;
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    addComment: async (parent, { thoughtId, commentText }, context) => {
+    addProduct: async (parent, { storeId, productName, productDescription, productPrice, productImage }) => {
       if (context.user) {
-        return Thought.findOneAndUpdate(
-          { _id: thoughtId },
-          {
-            $addToSet: {
-              comments: { commentText, commentAuthor: context.user.username },
-            },
-          },
-          {
-            new: true,
-            runValidators: true,
-          }
-        );
-      }
-      throw new AuthenticationError('You need to be logged in!');
-    },
-    removeThought: async (parent, { thoughtId }, context) => {
-      if (context.user) {
-        const thought = await Thought.findOneAndDelete({
-          _id: thoughtId,
-          thoughtAuthor: context.user.username,
+        const product = await Product.create({
+          productName,
+          productDescription,
+          productPrice,
+          productImage,
         });
 
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { thoughts: thought._id } }
+        await Store.findOneAndUpdate(
+          { _id: storeId },
+          { $addToSet: { products: product._id } }
         );
 
-        return thought;
+        return product;
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    removeComment: async (parent, { thoughtId, commentId }, context) => {
+    removeProduct: async (parent, { productId }, context) => {
       if (context.user) {
-        return Thought.findOneAndUpdate(
-          { _id: thoughtId },
-          {
-            $pull: {
-              comments: {
-                _id: commentId,
-                commentAuthor: context.user.username,
-              },
-            },
-          },
-          { new: true }
+        const product = await Product.findOneAndDelete({
+          _id: productId,
+        });
+
+        await Store.findOneAndUpdate(
+          { _id: product.store },
+          { $pull: { products: product._id } }
         );
+
+        return product;
       }
       throw new AuthenticationError('You need to be logged in!');
     },
