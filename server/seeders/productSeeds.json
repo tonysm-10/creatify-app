@@ -1,82 +1,82 @@
 [
   {
-      "productName": "Apple iPhone 13",
-      "productDescription": "The latest Apple iPhone with 5G technology",
-      "productCategory": "Electronics",
-      "productPrice": "999",
-      "productQuantity": "50",
-      "productImage": "iphone13.jpg"
+      "name": "Graphic Design Tablet",
+      "description": "A high quality tablet for graphic designers.",
+      "category": "Electronics",
+      "price": 150.00,
+      "quantity": 25,
+      "image": "http://example.com/graphic-tablet.jpg"
   },
   {
-      "productName": "Harry Potter Box Set",
-      "productDescription": "The complete collection of Harry Potter books",
-      "productCategory": "Books",
-      "productPrice": "120",
-      "productQuantity": "30",
-      "productImage": "harry_potter_box_set.jpg"
+      "name": "Acrylic Paint Set",
+      "description": "A set of 24 high pigment acrylic paints.",
+      "category": "Arts and Crafts",
+      "price": 35.00,
+      "quantity": 50,
+      "image": "http://example.com/acrylic-paints.jpg"
   },
   {
-      "productName": "LEGO Star Wars Set",
-      "productDescription": "A fun and challenging LEGO set for Star Wars fans",
-      "productCategory": "Toys",
-      "productPrice": "250",
-      "productQuantity": "40",
-      "productImage": "lego_starwars_set.jpg"
+      "name": "Leather Bound Sketchbook",
+      "description": "A durable sketchbook for artists.",
+      "category": "Arts and Crafts",
+      "price": 20.00,
+      "quantity": 30,
+      "image": "http://example.com/sketchbook.jpg"
   },
   {
-      "productName": "Levi's 501 Original Fit Jeans",
-      "productDescription": "Classic straight-fit jeans from Levi's",
-      "productCategory": "Fashion",
-      "productPrice": "59.50",
-      "productQuantity": "20",
-      "productImage": "levis_501.jpg"
+      "name": "Professional Camera",
+      "description": "A professional grade digital camera.",
+      "category": "Electronics",
+      "price": 1200.00,
+      "quantity": 15,
+      "image": "http://example.com/camera.jpg"
   },
   {
-      "productName": "Instant Pot Duo 7-in-1",
-      "productDescription": "Multi-use programmable pressure cooker, slow cooker, rice cooker, steamer, sauté, yogurt maker and warmer",
-      "productCategory": "Home & Kitchen",
-      "productPrice": "89",
-      "productQuantity": "10",
-      "productImage": "instant_pot.jpg"
+      "name": "Digital Art Software",
+      "description": "Leading software for digital artists.",
+      "category": "Software",
+      "price": 80.00,
+      "quantity": 200,
+      "image": "http://example.com/art-software.jpg"
   },
   {
-      "productName": "Michelin Premier A/S All-Season Tire",
-      "productDescription": "High-performance all-season tire from Michelin",
-      "productCategory": "Automotive",
-      "productPrice": "130",
-      "productQuantity": "15",
-      "productImage": "michelin_tire.jpg"
+      "name": "Easel Stand",
+      "description": "A sturdy and adjustable easel stand.",
+      "category": "Arts and Crafts",
+      "price": 70.00,
+      "quantity": 20,
+      "image": "http://example.com/easel-stand.jpg"
   },
   {
-      "productName": "Adidas Ultraboost 21",
-      "productDescription": "High-performance running shoes from Adidas",
-      "productCategory": "Sports",
-      "productPrice": "180",
-      "productQuantity": "60",
-      "productImage": "adidas_ultraboost.jpg"
+      "name": "3D Printer",
+      "description": "A compact 3D printer for home use.",
+      "category": "Electronics",
+      "price": 300.00,
+      "quantity": 10,
+      "image": "http://example.com/3d-printer.jpg"
   },
   {
-      "productName": "Fender American Professional II Stratocaster",
-      "productDescription": "The iconic electric guitar from Fender",
-      "productCategory": "Music",
-      "productPrice": "1499",
-      "productQuantity": "25",
-      "productImage": "fender_stratocaster.jpg"
+      "name": "Sculpting Tool Set",
+      "description": "A set of sculpting tools for clay and other materials.",
+      "category": "Arts and Crafts",
+      "price": 25.00,
+      "quantity": 50,
+      "image": "http://example.com/sculpting-tools.jpg"
   },
   {
-      "productName": "The Lord of the Rings Trilogy (Blu-ray)",
-      "productDescription": "The epic fantasy trilogy on Blu-ray",
-      "productCategory": "Movies",
-      "productPrice": "30",
-      "productQuantity": "35",
-      "productImage": "lotr_trilogy.jpg"
+      "name": "Oil Pastel Set",
+      "description": "A set of 48 oil pastels in various colors.",
+      "category": "Arts and Crafts",
+      "price": 15.00,
+      "quantity": 60,
+      "image": "http://example.com/oil-pastels.jpg"
   },
   {
-      "productName": "Dell XPS 13 Laptop",
-      "productDescription": "High-performance laptop with 13.3-inch display from Dell",
-      "productCategory": "Computers",
-      "productPrice": "999",
-      "productQuantity": "45",
-      "productImage": "dell_xps_13.jpg"
+      "name": "Photography Lighting Kit",
+      "description": "A complete lighting kit for professional photography.",
+      "category": "Electronics",
+      "price": 200.00,
+      "quantity": 10,
+      "image": "http://example.com/lighting-kit.jpg"
   }
 ]
