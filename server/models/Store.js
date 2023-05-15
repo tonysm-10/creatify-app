@@ -1,38 +1,42 @@
 const { Schema, model } = require('mongoose');
-const Schema = mongoose.Schema;
 
 const storeSchema = new Schema({
-    
-    storeName:{
-        type: String,
-        required: true,
-    },
-    colorBackground:{
-        type: String,
-        required: true,
-    },
-    email: {
-        type: String,
-        required: true,
-        unique: true,
-        match: [/.+@.+\..+/, 'Must match an email address!'],
-    },
-    phoneNumber: {
-        type: Int,
-        required: true,
-    },
-    storeLogo:{
-        type: String,
-        required: false,
-    },
-    username: {
-        type: String,
-        required: true,
-        unique: true,
-        trim: true,
-    },
+  _id: {
+    type: Schema.Types.ObjectId,
+    default: () => new mongoose.Types.ObjectId()
+  },
+  storeName: {
+    type: String,
+    required: true,
+  },
+  colorBackground: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    match: [/.+@.+\..+/, 'Must match an email address!'],
+  },
+  phoneNumber: {
+    type: Number,
+    required: true,
+  },
+  storeLogo: {
+    type: String,
+    required: false,
+  },
+  createdAt: {
+    type: Date,
+    required: true,
+    default: Date.now,
+  },
+  products: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Product'
+  }]
 });
-
 
 const Store = model('Store', storeSchema);
 

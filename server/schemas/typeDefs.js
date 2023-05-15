@@ -6,22 +6,27 @@ const typeDefs = gql`
     username: String
     email: String
     password: String
-    thoughts: [Thought]!
   }
 
-  type Thought {
+  type Store {
     _id: ID
-    thoughtText: String
-    thoughtAuthor: String
-    createdAt: String
-    comments: [Comment]!
+    storeName: String
+    colorBackground: String
+    phoneNumber: Number
+    email: String
+    storeLogo: String
+    createdAt: Date
+    products: [Product]!
   }
 
-  type Comment {
+  type Product {
     _id: ID
-    commentText: String
-    commentAuthor: String
-    createdAt: String
+    name: String
+    description: String
+    price: Number
+    quantity: Number
+    image: String
+    category: String
   }
 
   type Auth {
@@ -32,18 +37,50 @@ const typeDefs = gql`
   type Query {
     users: [User]
     user(username: String!): User
-    thoughts(username: String): [Thought]
-    thought(thoughtId: ID!): Thought
+    stores: [Store]
+    store(_id: ID!): Store
+    products: [Product]
+    product(_id: ID!): Product
     me: User
   }
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addThought(thoughtText: String!): Thought
-    addComment(thoughtId: ID!, commentText: String!): Thought
-    removeThought(thoughtId: ID!): Thought
-    removeComment(thoughtId: ID!, commentId: ID!): Thought
+    addStore(
+      storeName: String!
+      colorBackground: String!
+      phoneNumber: Number!
+      email: String!
+      storeLogo: String!
+    ): Store
+    updateStore(
+      _id: ID!
+      storeName: String
+      colorBackground: String
+      phoneNumber: Number
+      email: String
+      storeLogo: String
+    ): Store
+    deleteStore(_id: ID!): Store
+    addProduct(
+      name: String!
+      description: String!
+      price: Number!
+      image: String!
+      category: String!
+    ): Product
+    updateProduct(
+      _id: ID!
+      name: String
+      description: String
+      price: number
+      imageUrl: String
+      category: String
+    ): Product
+    deleteProduct(_id: ID!): Product
+    addComment(_id: ID!, commentText: String!): Product
+    removeComment(_id: ID!, commentId: ID!): Product
   }
 `;
 
