@@ -3,10 +3,6 @@ const { Schema, model } = mongoose;
 const bcrypt = require('bcrypt');
 
 const userSchema = new Schema({
-  _id: {
-    type: Schema.Types.ObjectId,
-    default: () => new mongoose.Types.ObjectId()
-  },
   username: {
     type: String,
     required: true,

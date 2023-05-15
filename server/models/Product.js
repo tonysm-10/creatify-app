@@ -3,10 +3,6 @@ const { Schema, model } = require('mongoose');
 
 const productSchema = new Schema(
   {
-    _id: {
-      type: Schema.Types.ObjectId,
-      default: () => new mongoose.Types.ObjectId()
-    },
   name: {
       type: String,
       required: true,

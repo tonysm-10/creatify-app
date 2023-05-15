@@ -2,10 +2,6 @@ const mongoose = require('mongoose');
 const { Schema, model } = require('mongoose');
 
 const storeSchema = new Schema({
-  _id: {
-    type: Schema.Types.ObjectId,
-    default: () => new mongoose.Types.ObjectId()
-  },
   storeName: {
     type: String,
     required: true,
