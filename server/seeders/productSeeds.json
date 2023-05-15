@@ -1,0 +1,82 @@
+[
+  {
+      "productName": "Apple iPhone 13",
+      "productDescription": "The latest Apple iPhone with 5G technology",
+      "productCategory": "Electronics",
+      "productPrice": "999",
+      "productQuantity": "50",
+      "productImage": "iphone13.jpg"
+  },
+  {
+      "productName": "Harry Potter Box Set",
+      "productDescription": "The complete collection of Harry Potter books",
+      "productCategory": "Books",
+      "productPrice": "120",
+      "productQuantity": "30",
+      "productImage": "harry_potter_box_set.jpg"
+  },
+  {
+      "productName": "LEGO Star Wars Set",
+      "productDescription": "A fun and challenging LEGO set for Star Wars fans",
+      "productCategory": "Toys",
+      "productPrice": "250",
+      "productQuantity": "40",
+      "productImage": "lego_starwars_set.jpg"
+  },
+  {
+      "productName": "Levi's 501 Original Fit Jeans",
+      "productDescription": "Classic straight-fit jeans from Levi's",
+      "productCategory": "Fashion",
+      "productPrice": "59.50",
+      "productQuantity": "20",
+      "productImage": "levis_501.jpg"
+  },
+  {
+      "productName": "Instant Pot Duo 7-in-1",
+      "productDescription": "Multi-use programmable pressure cooker, slow cooker, rice cooker, steamer, sauté, yogurt maker and warmer",
+      "productCategory": "Home & Kitchen",
+      "productPrice": "89",
+      "productQuantity": "10",
+      "productImage": "instant_pot.jpg"
+  },
+  {
+      "productName": "Michelin Premier A/S All-Season Tire",
+      "productDescription": "High-performance all-season tire from Michelin",
+      "productCategory": "Automotive",
+      "productPrice": "130",
+      "productQuantity": "15",
+      "productImage": "michelin_tire.jpg"
+  },
+  {
+      "productName": "Adidas Ultraboost 21",
+      "productDescription": "High-performance running shoes from Adidas",
+      "productCategory": "Sports",
+      "productPrice": "180",
+      "productQuantity": "60",
+      "productImage": "adidas_ultraboost.jpg"
+  },
+  {
+      "productName": "Fender American Professional II Stratocaster",
+      "productDescription": "The iconic electric guitar from Fender",
+      "productCategory": "Music",
+      "productPrice": "1499",
+      "productQuantity": "25",
+      "productImage": "fender_stratocaster.jpg"
+  },
+  {
+      "productName": "The Lord of the Rings Trilogy (Blu-ray)",
+      "productDescription": "The epic fantasy trilogy on Blu-ray",
+      "productCategory": "Movies",
+      "productPrice": "30",
+      "productQuantity": "35",
+      "productImage": "lotr_trilogy.jpg"
+  },
+  {
+      "productName": "Dell XPS 13 Laptop",
+      "productDescription": "High-performance laptop with 13.3-inch display from Dell",
+      "productCategory": "Computers",
+      "productPrice": "999",
+      "productQuantity": "45",
+      "productImage": "dell_xps_13.jpg"
+  }
+]
