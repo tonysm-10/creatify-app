@@ -74,7 +74,7 @@ const typeDefs = gql`
       _id: ID!
       name: String
       description: String
-      price: number
+      price: Number
       imageUrl: String
       category: String
     ): Product
