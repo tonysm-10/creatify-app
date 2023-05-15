@@ -1,6 +1,8 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
+  scalar Date
+
   type User {
     _id: ID
     username: String
@@ -12,7 +14,7 @@ const typeDefs = gql`
     _id: ID
     storeName: String
     colorBackground: String
-    phoneNumber: Number
+    phoneNumber: Float
     email: String
     storeLogo: String
     createdAt: Date
@@ -23,8 +25,8 @@ const typeDefs = gql`
     _id: ID
     name: String
     description: String
-    price: Number
-    quantity: Number
+    price: Float
+    quantity: Int
     image: String
     category: String
   }
@@ -42,6 +44,7 @@ const typeDefs = gql`
     products: [Product]
     product(_id: ID!): Product
     me: User
+    getCurrentDate: Date
   }
 
   type Mutation {
@@ -50,7 +53,7 @@ const typeDefs = gql`
     addStore(
       storeName: String!
       colorBackground: String!
-      phoneNumber: Number!
+      phoneNumber: Float!
       email: String!
       storeLogo: String!
     ): Store
@@ -58,7 +61,7 @@ const typeDefs = gql`
       _id: ID!
       storeName: String
       colorBackground: String
-      phoneNumber: Number
+      phoneNumber: Float
       email: String
       storeLogo: String
     ): Store
@@ -66,7 +69,7 @@ const typeDefs = gql`
     addProduct(
       name: String!
       description: String!
-      price: Number!
+      price: Float!
       image: String!
       category: String!
     ): Product
@@ -74,13 +77,14 @@ const typeDefs = gql`
       _id: ID!
       name: String
       description: String
-      price: number
+      price: Float
       imageUrl: String
       category: String
     ): Product
     deleteProduct(_id: ID!): Product
     addComment(_id: ID!, commentText: String!): Product
     removeComment(_id: ID!, commentId: ID!): Product
+    removeProduct(_id: ID!): Product
   }
 `;
 
