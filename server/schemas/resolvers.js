@@ -85,13 +85,15 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    addProduct: async (parent, { storeId, productName, productDescription, productPrice, productImage }, context) => {
+    addProduct: async (parent, { storeId, name, description, price, image, category, quantity }, context) => {
       if (context.user) {
         const product = await Product.create({
-          productName,
-          productDescription,
-          productPrice,
-          productImage,
+          name,
+          description,
+          price,
+          image,
+          category, 
+          quantity
         });
 
         await Store.findOneAndUpdate(
