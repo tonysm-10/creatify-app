@@ -27,9 +27,9 @@ const typeDefs = gql`
     name: String
     description: String
     price: Float
-    quantity: Int
     image: String
     category: String
+    quantity: Float
   }
 
   type Auth {
@@ -65,14 +65,17 @@ const typeDefs = gql`
       phoneNumber: Float
       email: String
       storeLogo: String
+      createdAt: Date
+      
     ): Store
-    deleteStore(_id: ID!): Store
+    deleteStore(_id: ID!, storeId: ID!): Store
     addProduct(
-      name: String!
-      description: String!
-      price: Float!
-      image: String!
-      category: String!
+      name: String
+      description: String
+      price: Float
+      image: String
+      category: String
+      quantity: Float
     ): Product
     updateProduct(
       _id: ID!
@@ -81,6 +84,7 @@ const typeDefs = gql`
       price: Float
       imageUrl: String
       category: String
+      quantity: Float
     ): Product
     deleteProduct(_id: ID!): Product
     addComment(_id: ID!, commentText: String!): Product
