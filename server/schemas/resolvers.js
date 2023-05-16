@@ -50,10 +50,10 @@ const resolvers = {
     },
 
     me: async (parent, context) => {
-      // if (context.user) {
-      //   return User.findOne({ _id: context.user._id });
-      // }
-      // throw new AuthenticationError('You need to be logged in!');
+      if (context.user) {
+        return User.findOne({ _id: context.user._id });
+      }
+      throw new AuthenticationError('You need to be logged in!');
     },
   },
 
@@ -81,7 +81,7 @@ const resolvers = {
       return { token, user };
     },
     addStore: async (parent, { storeName, colorBackground, phoneNumber, email, storeLogo }, context) => {
-      // if (context.user) {
+      if (context.user) {
         const store = await Store.create({
           storeName,
           colorBackground,
@@ -90,17 +90,17 @@ const resolvers = {
           storeLogo,
         });
 
-        // await User.findOneAndUpdate(
-        //   { _id: context.user._id },
-        //   { $addToSet: { stores: store._id } }
-        // );
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { stores: store._id } }
+        );
 
         return store;
-      // }
-      // throw new AuthenticationError('You need to be logged in!');
+      }
+      throw new AuthenticationError('You need to be logged in!');
     },
     addProduct: async (parent, { storeId, name, description, price, image, category, quantity }, context) => {
-      // if (context.user) {
+      if (context.user) {
         const product = await Product.create({
           name,
           description,
@@ -112,78 +112,78 @@ const resolvers = {
       
         });
 
-        // await Store.findOneAndUpdate(
-        //   { _id: storeId },
-        //   { $addToSet: { products: product._id } }
-        // );
+        await Store.findOneAndUpdate(
+          { _id: storeId },
+          { $addToSet: { products: product._id } }
+        );
 
         return product;
-      // }
-      // throw new AuthenticationError('You need to be logged in!');
+      }
+      throw new AuthenticationError('You need to be logged in!');
     },
     deleteProduct: async (parent, { productId }, context) => {
-      // if (context.user) {
+      if (context.user) {
         const product = await Product.findOneAndDelete({
           _id: productId,
         });
 
-        // await Store.findOneAndUpdate(
-        //   { _id: product.store },
-        //   { $pull: { products: product._id } }
-        // );
+        await Store.findOneAndUpdate(
+          { _id: product.store },
+          { $pull: { products: product._id } }
+        );
 
         return product;
-      // }
+      }
 
-      // throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError('You need to be logged in!');
     },
     deleteStore: async (parent, { storeId }, context) => {
-      // if (context.user) {
+      if (context.user) {
         const store = await Store.findOneAndDelete({
           _id: storeId,
         });
 
-        // await Store.findOneAndUpdate(
-        //   { _id: product.store },
-        //   { $pull: { products: product._id } }
-        // );
+        await User.findOneAndUpdate(
+          { _id: store.user },
+          { $pull: { stores: store._id } }
+        );
 
         return store;
-      // }
+      }
 
-      // throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError('You need to be logged in!');
     },
     updateStore: async (parent, { storeId }, context) => {
-      // if (context.user) {
+      if (context.user) {
         const store = await Store.findOneAndDelete({
           _id: storeId,
         });
 
-        // await Store.findOneAndUpdate(
-        //   { _id: product.store },
-        //   { $pull: { products: product._id } }
-        // );
+        await User.findOneAndUpdate(
+          { _id: store.user },
+          { $pull: { stores: store._id } }
+        );
 
         return store;
-      // }
+      }
 
-      // throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError('You need to be logged in!');
     },
     updateProduct: async (parent, { productId }, context) => {
-      // if (context.user) {
+      if (context.user) {
         const product = await Product.findOneAndDelete({
           _id: productId,
         });
 
-        // await Store.findOneAndUpdate(
-        //   { _id: product.store },
-        //   { $pull: { products: product._id } }
-        // );
+        await Store.findOneAndUpdate(
+          { _id: product.store },
+          { $pull: { products: product._id } }
+        );
 
         return product;
-      // }
+      }
 
-      // throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError('You need to be logged in!');
     },
   },
 };
