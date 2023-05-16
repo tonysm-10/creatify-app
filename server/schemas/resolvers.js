@@ -121,7 +121,7 @@ const resolvers = {
       // }
       // throw new AuthenticationError('You need to be logged in!');
     },
-    removeProduct: async (parent, { productId }, context) => {
+    deleteProduct: async (parent, { productId }, context) => {
       // if (context.user) {
         const product = await Product.findOneAndDelete({
           _id: productId,
@@ -149,6 +149,38 @@ const resolvers = {
         // );
 
         return store;
+      // }
+
+      // throw new AuthenticationError('You need to be logged in!');
+    },
+    updateStore: async (parent, { storeId }, context) => {
+      // if (context.user) {
+        const store = await Store.findOneAndDelete({
+          _id: storeId,
+        });
+
+        // await Store.findOneAndUpdate(
+        //   { _id: product.store },
+        //   { $pull: { products: product._id } }
+        // );
+
+        return store;
+      // }
+
+      // throw new AuthenticationError('You need to be logged in!');
+    },
+    updateProduct: async (parent, { productId }, context) => {
+      // if (context.user) {
+        const product = await Product.findOneAndDelete({
+          _id: productId,
+        });
+
+        // await Store.findOneAndUpdate(
+        //   { _id: product.store },
+        //   { $pull: { products: product._id } }
+        // );
+
+        return product;
       // }
 
       // throw new AuthenticationError('You need to be logged in!');
