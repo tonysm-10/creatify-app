@@ -21,6 +21,11 @@ const userSchema = new Schema({
     minlength: 5,
   },
 
+  stores: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Store'
+  }]
+
 });
 
 userSchema.pre('save', async function (next) {
