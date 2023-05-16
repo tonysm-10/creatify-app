@@ -13,9 +13,47 @@ db.once('open', async () => {
     await Store.deleteMany({});
     await User.deleteMany({});
 
-    await Product.create(productSeeds);
-    await Store.create(storeSeeds);
-    await User.create(userSeeds);
+   const userid = []
+   const storeid = []
+   
+
+   for(var i =0; i < userSeeds.length; i++){
+    const {_id}=await User.create(userSeeds[i]);
+    userid.push(_id)
+   }
+
+   for(var i =0; i < storeSeeds.length; i++){
+    const {_id}=await Store.create(storeSeeds[i]);
+    storeid.push(_id)
+    await User.findOneAndUpdate(
+      {
+        _id:userid[Math.floor(Math.random () * userid.length )]
+
+      },{
+        $addToSet:{
+          stores:_id
+        }
+      }
+    )
+   }
+   
+   for(var i =0; i < productSeeds.length; i++){
+    const {_id}=await Product.create(productSeeds[i]);
+ 
+     await Store.findOneAndUpdate(
+      {
+        _id:storeid[Math.floor(Math.random () * storeid.length )]
+
+      },{
+        $addToSet:{
+          products:_id
+        }
+      }
+    )
+   }
+
+
+  
 
     console.log('All done!');
     process.exit(0);

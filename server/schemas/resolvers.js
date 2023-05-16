@@ -35,6 +35,20 @@ const resolvers = {
     product: async (parent, { productId }) => {
       return Product.findOne({ _id: productId });
     },
+
+    users: async () => {
+      return User.find().populate('stores').populate({
+        path:"stores",
+        populate:"products"
+      });
+    },
+    user: async (parent, { storeId }) => {
+      return User.findOne({ _id: storeId }).populate('stores').populate({
+        path:"stores",
+        populate:"products"
+      });
+    },
+
     me: async (parent, context) => {
       if (context.user) {
         return User.findOne({ _id: context.user._id });
@@ -93,7 +107,9 @@ const resolvers = {
           price,
           image,
           category, 
-          quantity
+          quantity,
+          
+      
         });
 
         await Store.findOneAndUpdate(
