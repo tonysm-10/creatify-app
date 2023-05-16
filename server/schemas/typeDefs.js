@@ -59,15 +59,8 @@ const typeDefs = gql`
       storeLogo: String!
     ): Store
     updateStore(
-      _id: ID!
-      storeName: String
-      colorBackground: String
-      phoneNumber: Float
-      email: String
-      storeLogo: String
-      createdAt: Date
-      
-    ): Store
+    storeId: ID!, storeName: String, colorBackground: String, phoneNumber: Float, email: String, storeLogo: String, createdAt: Date
+      ): Store
     deleteStore(_id: ID!, storeId: ID!): Store
     addProduct(
       name: String
@@ -78,18 +71,17 @@ const typeDefs = gql`
       quantity: Float
     ): Product
     updateProduct(
-      _id: ID!
+      productId: ID!
       name: String
       description: String
       price: Float
-      imageUrl: String
+      image: String
       category: String
       quantity: Float
     ): Product
-    deleteProduct(_id: ID!): Product
+    deleteProduct(_id: ID!, productId: ID!): Product
     addComment(_id: ID!, commentText: String!): Product
     removeComment(_id: ID!, commentId: ID!): Product
-    removeProduct(_id: ID!): Product
   }
 `;
 
