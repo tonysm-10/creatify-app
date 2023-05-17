@@ -1,10 +1,15 @@
-
-
+import { Routes, Route } from "react-router-dom";
+import Layout from './pages/Layout';
+import Home from './pages/Home'
+import Footer from './pages/Footer'
 
 function App() {
   return (
-    <div className="App">
-        this homepage
+    <div>
+        <Layout />
+        <Home />
+        <Footer />
+      
     </div>
   );
 }
