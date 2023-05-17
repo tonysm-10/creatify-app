@@ -1,54 +1,54 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { CREATE_PRODUCT, UPDATE_PRODUCT, DELETE_PRODUCT } from '../../mutations';
+import { CREATE_STORE, UPDATE_STORE, DELETE_STORE } from '../../mutations';
 
-const ProductForm = ({ product, onUpdate, onDelete }) => {
-  const [name, setName] = useState(product ? product.name : '');
-  const [description, setDescription] = useState(product ? product.description : '');
-  const [price, setPrice] = useState(product ? product.price : 0);
-  const [quantity, setQuantity] = useState(product ? product.quantity : 0);
+const StoreForm = ({ store, onUpdate, onDelete }) => {
+  const [storeName, setStoreName] = useState(store ? store.storeName : '');
+  const [colorBackground, setColorBackground] = useState(store ? store.colorBackground : '');
+  const [phoneNumber, setPhoneNumber] = useState(store ? store.phoneNumber : '');
+  const [email, setEmail] = useState(store ? store.email : '');
 
-  const [createProduct] = useMutation(CREATE_PRODUCT);
-  const [updateProduct] = useMutation(UPDATE_PRODUCT);
-  const [deleteProduct] = useMutation(DELETE_PRODUCT);
+  const [createStore] = useMutation(CREATE_STORE);
+  const [updateStore] = useMutation(UPDATE_STORE);
+  const [deleteStore] = useMutation(DELETE_STORE);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    if (product) {
-      // Update product
-      await updateProduct({
+    if (store) {
+      // Update store
+      await updateStore({
         variables: {
-          productId: product.id,
-          name,
-          description,
-          price: parseFloat(price),
-          quantity: parseInt(quantity),
+          storeId: store.id,
+          storeName,
+          colorBackground,
+          phoneNumber,
+          email,
         },
       });
       onUpdate();
     } else {
-      // Create product
-      await createProduct({
+      // Create store
+      await createStore({
         variables: {
-          name,
-          description,
-          price: parseFloat(price),
-          quantity: parseInt(quantity),
+          storeName,
+          colorBackground,
+          phoneNumber,
+          email,
         },
       });
-      setName('');
-      setDescription('');
-      setPrice(0);
-      setQuantity(0);
+      setStoreName('');
+      setColorBackground('');
+      setPhoneNumber('');
+      setEmail('');
     }
   };
 
   const handleDelete = async () => {
-    if (window.confirm('Are you sure you want to delete this product?')) {
-      await deleteProduct({
+    if (window.confirm('Are you sure you want to delete this store?')) {
+      await deleteStore({
         variables: {
-          productId: product.id,
+          storeId: store.id,
         },
       });
       onDelete();
@@ -58,35 +58,34 @@ const ProductForm = ({ product, onUpdate, onDelete }) => {
   return (
     <div>
       <form onSubmit={handleFormSubmit}>
-        <label>Name:</label>
+        <label>Store Name:</label>
         <input
           type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={storeName}
+          onChange={(e) => setStoreName(e.target.value)}
         />
-        <label>Description:</label>
+        <label>Color Background:</label>
         <input
           type="text"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          value={colorBackground}
+          onChange={(e) => setColorBackground(e.target.value)}
         />
-        <label>Price:</label>
+        <label>Phone Number:</label>
         <input
-          type="number"
-          step="0.01"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
+          type="text"
+          value={phoneNumber}
+          onChange={(e) => setPhoneNumber(e.target.value)}
         />
-        <label>Quantity:</label>
+        <label>Email:</label>
         <input
-          type="number"
-          value={quantity}
-          onChange={(e) => setQuantity(e.target.value)}
+          type="text"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
-        <button type="submit">{product ? 'Update Product' : 'Create Product'}</button>
-        {product && (
+        <button type="submit">{store ? 'Update Store' : 'Create Store'}</button>
+        {store && (
           <button type="button" onClick={handleDelete}>
-            Delete Product
+            Delete Store
           </button>
         )}
       </form>
@@ -94,4 +93,4 @@ const ProductForm = ({ product, onUpdate, onDelete }) => {
   );
 };
 
-export default ProductForm;
+export default StoreForm;
