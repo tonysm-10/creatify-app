@@ -1,13 +1,12 @@
 import React from 'react';
 import Sidebar from '../Sidebar';
-import Footer from '../Footer';
+import Home from '../Home';
 
-const Layout = ({ children }) => {
+const Layout = () => {
   return (
     <div>
       <Sidebar />
-      <div className="main-content">{children}</div>
-      <Footer />
+      <Home />
     </div>
   );
 };
