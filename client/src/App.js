@@ -1,17 +1,13 @@
-import { Routes, Route } from "react-router-dom";
+import React from 'react';
 import Layout from './pages/Layout';
-import Home from './pages/Home'
-import Footer from './pages/Footer'
+import Home from './pages/Home';
 
-function App() {
+const App = () => {
   return (
-    <div>
-        <Layout />
-        <Home />
-        <Footer />
-      
-    </div>
+    <Layout>
+      <Home />
+    </Layout>
   );
-}
+};
 
 export default App;
