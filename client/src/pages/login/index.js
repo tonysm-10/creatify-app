@@ -1,90 +1,94 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../../utils/mutations';
-import Auth from '../../utils/auth';
+import { LOGIN_USER } from '../utils/mutations';
 
-const Login = () => {
-const [formState, setFormState] = useState({ email: '', password: '' });
-const [login, { error, data }] = useMutation(LOGIN_USER);
-const history = useHistory();
+import Auth from '../utils/auth';
 
-const handleChange = (event) => {
+const Login = (props) => {
+  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [login, { error, data }] = useMutation(LOGIN_USER);
+
+  // update state based on form input changes
+  const handleChange = (event) => {
     const { name, value } = event.target;
-    setFormState((prevState) => ({
-        ...prevState,
-        [name]: value,
-    }));
-};
 
-    const handleFormSubmit = async (event) => {
-    event.preventDefault();
-
-    try {
-        const { data } = await login({
-        variables: { ...formState },
+    setFormState({
+      ...formState,
+      [name]: value,
     });
-    Auth.login(data.login.token);
-      history.push('/'); // Redirect to the home page
+  };
+
+  // submit form
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    console.log(formState);
+    try {
+      const { data } = await login({
+        variables: { ...formState },
+      });
+
+      Auth.login(data.login.token);
     } catch (e) {
-        console.error(e);
+      console.error(e);
     }
 
-    setFormState({ email: '', password: '' });
-};
+    // clear form values
+    setFormState({
+      email: '',
+      password: '',
+    });
+  };
 
-return (
+  return (
     <main className="flex-row justify-center mb-4">
-        <div className="col-12 col-lg-6">
+      <div className="col-12 col-lg-10">
         <div className="card">
-            <h4 className="card-header bg-dark text-light p-2">Login</h4>
-            <div className="card-body">
+          <h4 className="card-header bg-dark text-light p-2">Login</h4>
+          <div className="card-body">
             {data ? (
-                <p className="success-message">
+              <p>
                 Success! You may now head{' '}
                 <Link to="/">back to the homepage.</Link>
-                </p>
+              </p>
             ) : (
-            <form onSubmit={handleFormSubmit}>
-                <div className="form-group">
+              <form onSubmit={handleFormSubmit}>
                 <input
-                    className="form-control"
-                    placeholder="Your email"
-                    name="email"
-                    type="email"
-                    value={formState.email}
-                    onChange={handleChange}
+                  className="form-input"
+                  placeholder="Your email"
+                  name="email"
+                  type="email"
+                  value={formState.email}
+                  onChange={handleChange}
                 />
-                </div>
-                <div className="form-group">
                 <input
-                    className="form-control"
-                    placeholder="******"
-                    name="password"
-                    type="password"
-                    value={formState.password}
-                    onChange={handleChange}
+                  className="form-input"
+                  placeholder="******"
+                  name="password"
+                  type="password"
+                  value={formState.password}
+                  onChange={handleChange}
                 />
-                </div>
                 <button
-                    className="btn btn-block btn-info"
-                    style={{ cursor: 'pointer' }}
-                    type="submit"
+                  className="btn btn-block btn-primary"
+                  style={{ cursor: 'pointer' }}
+                  type="submit"
                 >
-                Submit
+                  Submit
                 </button>
-            </form>
+              </form>
             )}
+
             {error && (
-                <div className="my-3 p-3 bg-danger text-white">
+              <div className="my-3 p-3 bg-danger text-white">
                 {error.message}
-                </div>
+              </div>
             )}
-            </div>
+          </div>
         </div>
-        </div>
+      </div>
     </main>
-    );
+  );
 };
 
 export default Login;
