@@ -8,6 +8,7 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import Login from './pages/login/index';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -40,6 +41,7 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<Layout />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </Router>
     </ApolloProvider>
