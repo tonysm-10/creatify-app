@@ -1,11 +1,14 @@
+import React from 'react';
+import './index.scss';
 
+const Sidebar = () => {
+  return (
+    <div>
+      <nav className="navbar">
+        side
+      </nav>
+    </div>
+  );
+};
 
-const Sidebar = ()=>{
-    return (
-        <div>
-            sidebar
-        </div>
-    )
-}
-
-export default Sidebar
+export default Sidebar;
