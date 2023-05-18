@@ -59,24 +59,25 @@ const ProductForm = ({ product, onUpdate, onDelete }) => {
     event.preventDefault();
 
     const { name, description, price, quantity, category, image } = values;
-
+console.log(values)
+console.log(product)
     // Check if the required fields are filled in
 
-    if (product) {
-      // Update product
-      await updateProduct({
-        variables: {
-          productId: product.id,
-          name,
-          description,
-          price: parseFloat(price),
-          quantity: parseFloat(quantity),
-          category,
-          image,
-        },
-      });
-      onUpdate();
-    } else {
+    // if (product) {
+    //   // Update product
+    //   await updateProduct({
+    //     variables: {
+    //       productId: product.id,
+    //       name,
+    //       description,
+    //       price: parseFloat(price),
+    //       quantity: parseFloat(quantity),
+    //       category,
+    //       image,
+    //     },
+    //   });
+    //   onUpdate();
+    // } else {
       // Create product
       await createProduct({
         variables: {
@@ -90,7 +91,7 @@ const ProductForm = ({ product, onUpdate, onDelete }) => {
         },
       });
       setValues(initialValues);
-    }
+    
   };
 
   const handleDelete = async () => {
@@ -134,7 +135,7 @@ const ProductForm = ({ product, onUpdate, onDelete }) => {
             Delete Product
           </button>
         )}
-      </form>
+
       <div>store Id: {storeId}</div>
       <div>
         {stores &&
@@ -174,6 +175,7 @@ const ProductForm = ({ product, onUpdate, onDelete }) => {
           Next
         </button>
       </div>
+      </form>
     </div>
   );
 };

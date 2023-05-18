@@ -37,7 +37,7 @@ export const CREATE_CUSTOMER = gql`
 `;
 
 export const CREATE_PRODUCT = gql`
-mutation Mutation($name: String, $description: String, $price: Float, $image: String, $category: String, $quantity: Float) {
+mutation Mutation($name: String!, $description: String!, $price: Float!, $image: String!, $category: String!, $quantity: Float!) {
   addProduct(name: $name, description: $description, price: $price, image: $image, category: $category, quantity: $quantity) {
     _id
     name

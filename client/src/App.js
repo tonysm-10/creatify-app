@@ -17,7 +17,7 @@ import StoreForm from './pages/Store/storeform';
 import Signup from './pages/Signup';
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
-  uri: 'http://localhost:3001/graphql',
+  uri: '/graphql',
 });
 
 
