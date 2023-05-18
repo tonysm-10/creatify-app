@@ -51,16 +51,15 @@ mutation Mutation($name: String, $description: String, $price: Float, $image: St
 `;
 
 export const CREATE_STORE = gql`
-  mutation createStore($storeName: String!, $colorBackground: String!, $phoneNumber: Float!, $email: String!, $storeLogo: String!) {
-    createStore(storeName: $storeName, colorBackground: $colorBackground, phoneNumber: $phoneNumber, email: $email, storeLogo: $storeLogo) {
-      _id
-      storeName
-      colorBackground
-      phoneNumber
-      email
-      storeLogo
-    }
+mutation Mutation($storeName: String!, $colorBackground: String!, $phoneNumber: Float!, $email: String!, $storeLogo: String!) {
+  addStore(storeName: $storeName, colorBackground: $colorBackground, phoneNumber: $phoneNumber, email: $email, storeLogo: $storeLogo) {
+    colorBackground
+    email
+    phoneNumber
+    storeLogo
+    storeName
   }
+}
 `;
 
 export const CREATE_ORDER = gql`

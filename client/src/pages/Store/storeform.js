@@ -1,37 +1,40 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { CREATE_PRODUCT, UPDATE_PRODUCT, DELETE_PRODUCT } from '../../utils/mutations';
+import { CREATE_STORE, UPDATE_STORE, DELETE_STORE } from '../../utils/mutations';
 import './Carousel.scss';
 
-const ProductForm = ({ product, onUpdate, onDelete }) => {
+const StoreForm = ({ store, onUpdate, onDelete }) => {
   const questions = [
-    { question: 'What is the store name?', key: 'name' },
-    { question: 'What is the product description?', key: 'description' },
-    { question: 'What is the product price?', key: 'price' },
-    { question: 'What is the product quantity?', key: 'quantity' },
-    { question: 'What is the product category?', key: 'category' },
-    { question: 'What is the product image?', key: 'image' },
+    { question: 'What is the store name?', key: 'storeName' },
+    { question: 'Add color for your web theme?', key: 'colorBackground' },
+    { question: 'Please provide your business phone number', key: 'phoneNumber' },
+    { question: 'Please provide your business email', key: 'email' },
+    { question: 'Please provide your business logo', key: 'storeLogo' },
   ];
 
-  const initialValues = product
-    ? {
-        name: product.name,
-        description: product.description,
-        price: product.price,
-        quantity: product.quantity,
-      }
-    : {
-        name: '',
-        description: '',
-        price: 0,
-        quantity: 0,
-      };
+  const initialValues = store
+  ? {
+      storeName: store.storeName || '',
+      colorBackground: store.colorBackground || '',
+      storeLogo: store.storeLogo || '',
+      phoneNumber: parseFloat(store.phoneNumber) || '', // Parse as float
+      email: store.email || '',
+    }
+  : {
+      storeName: '',
+      colorBackground: '',
+      storeLogo: '',
+      phoneNumber: '', // Initialize as an empty string
+      email: '',
+    };
+
+
 
   const [values, setValues] = useState(initialValues);
 
-  const [createProduct] = useMutation(CREATE_PRODUCT);
-  const [updateProduct] = useMutation(UPDATE_PRODUCT);
-  const [deleteProduct] = useMutation(DELETE_PRODUCT);
+  const [createStore] = useMutation(CREATE_STORE);
+  const [updateStore] = useMutation(UPDATE_STORE);
+  const [deleteStore] = useMutation(DELETE_STORE);
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -45,36 +48,33 @@ const ProductForm = ({ product, onUpdate, onDelete }) => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
   
-    const { name, description, price, quantity, category, image } = values;
+    const { storeName, colorBackground, storeLogo, phoneNumber, email } = values;
   
     // Obtain the store ID or retrieve it from your application's state
-    const storeId = '6463f0429a64f0d28eae0004'; // Replace with the actual store ID
+    // /const  = ''; // Replace with the actual store ID
   
-    if (product) {
+    if (store) {
       // Update product
-      await updateProduct({
+      await updateStore({
         variables: {
-          productId: product.id,
-          name,
-          description,
-          price: parseFloat(price),
-          quantity: parseInt(quantity),
-          category,
-          image,
+          storeId: store.id,
+          storeName,
+          colorBackground,
+          phoneNumber: parseFloat(phoneNumber),
+          email,
+          storeLogo,
         },
       });
       onUpdate();
     } else {
       // Create product
-      await createProduct({
+      await createStore({
         variables: {
-          name,
-          description,
-          price: parseFloat(price),
-          quantity: parseInt(quantity),
-          category,
-          image,
-          storeId,
+          storeName,
+          colorBackground,
+          phoneNumber: parseFloat(phoneNumber),
+          email,
+          storeLogo,
         },
       });
       setValues(initialValues);
@@ -84,10 +84,10 @@ const ProductForm = ({ product, onUpdate, onDelete }) => {
   
 
   const handleDelete = async () => {
-    if (window.confirm('Are you sure you want to delete this product?')) {
-      await deleteProduct({
+    if (window.confirm('Are you sure you want to delete this Store?')) {
+      await deleteStore({
         variables: {
-          productId: product.id,
+          storeId: store.id,
         },
       });
       onDelete();
@@ -109,15 +109,15 @@ const ProductForm = ({ product, onUpdate, onDelete }) => {
   };
 
   return (
-    <div className="product">
+    <div className="store">
       <form onSubmit={handleFormSubmit}>
         {/* Form fields */}
         <button type="submit" className="primary-button">
-          {product ? 'Update Product' : 'Create Product'}
+          {store ? 'Update Store' : 'Create Store'}
         </button>
-        {product && (
+        {store && (
           <button className="danger-button" onClick={handleDelete}>
-            Delete Product
+            Delete Store
           </button>
         )}
       </form>
@@ -155,6 +155,6 @@ const ProductForm = ({ product, onUpdate, onDelete }) => {
   );
 };
 
-export default ProductForm;
+export default StoreForm;
 
 
