@@ -37,15 +37,17 @@ export const CREATE_CUSTOMER = gql`
 `;
 
 export const CREATE_PRODUCT = gql`
-  mutation createProduct($name: String!, $description: String!, $price: Float!, $quantity: Int!) {
-    createProduct(name: $name, description: $description, price: $price, quantity: $quantity) {
-      _id
-      name
-      description
-      price
-      quantity
-    }
+mutation Mutation($name: String, $description: String, $price: Float, $image: String, $category: String, $quantity: Float) {
+  addProduct(name: $name, description: $description, price: $price, image: $image, category: $category, quantity: $quantity) {
+    _id
+    name
+    description
+    price
+    image
+    category
+    quantity
   }
+}
 `;
 
 export const CREATE_STORE = gql`
