@@ -1,6 +1,20 @@
 .homepage{
     margin: auto 150px;
+    h1{
+        font-weight: 600;
+    }
     .info{
         line-height: 1.5rem;
+    }
+    .btn1{
+        border: black solid 1px;
+        background-color: lightgreen;
+        border-radius: .3rem;
+        width: 4rem;
+        height: 1rem;
+        
+        &:hover{
+            background-color: transparent;
+        }
     }
 }
