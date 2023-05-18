@@ -1,6 +1,7 @@
 import decode from 'jwt-decode';
 
 class AuthService {
+  static instance = new AuthService();
   getProfile() {
     return decode(this.getToken());
   }
@@ -38,4 +39,4 @@ class AuthService {
   }
 }
 
-export default new AuthService();
+export default AuthService.instance;
