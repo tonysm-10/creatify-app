@@ -9,10 +9,11 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import Login from './pages/login/index';
+import Login from './pages/Login/index';
 import Product from './pages/Product/productform'
 import Sidebar from './pages/Sidebar/index';
 import StoreForm from './pages/Store/storeform';
+import Signup from './pages/Signup';
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -49,6 +50,7 @@ const App = () => {
         <Route path="/addProduct" element={<Product />} />
         <Route path="/store" element={<StoreForm />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
 
       </Routes>
     </Router>
