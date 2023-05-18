@@ -4,6 +4,7 @@ import './index.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAdd, faHome, faPerson, faStore } from '@fortawesome/free-solid-svg-icons';
 import logo from '../../logo/logo1.png';
+import './index.scss';
 
 const Sidebar = () => {
   return (
@@ -15,16 +16,18 @@ const Sidebar = () => {
       <NavLink exact="true" activeclassname="active" to="/">
           <FontAwesomeIcon icon={faHome} className='colorIcon'/>
       </NavLink>
-      <NavLink exact="true" activeclassname="active" className="about-link" to="/addProduct">
+      <NavLink exact="true" activeclassname="active" className="product-link" to="/addProduct">
         <FontAwesomeIcon icon={faAdd} className='colorIcon'/>
       </NavLink>
-      <NavLink exact="true" activeclassname="active" className="contact-link" to="/store">
+      <NavLink exact="true" activeclassname="active" className="store-link" to="/store">
         <FontAwesomeIcon icon={faStore} className='colorIcon'/>
       </NavLink>
-      <NavLink exact="true" activeclassname="active" className="contact-link" to="/login">
-        <FontAwesomeIcon icon={faPerson} className='colorIcon'/>
+      <NavLink exact="true" activeclassname="active" className="login-link" to="/login">
+        <a>Login</a>
       </NavLink>
-
+      <NavLink exact="true" activeclassname="active" className="signup-link" to="/signup">
+        <a>Signup</a>
+      </NavLink>
       </nav>
     </div>
   );
