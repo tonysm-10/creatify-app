@@ -63,12 +63,12 @@ const typeDefs = gql`
       ): Store
     deleteStore(_id: ID!, storeId: ID!): Store
     addProduct(
-      name: String
-      description: String
-      price: Float
-      image: String
-      category: String
-      quantity: Float
+      name: String!
+      description: String!
+      price: Float!
+      image: String!
+      category: String!
+      quantity: Float!
     ): Product
     updateProduct(
       productId: ID!

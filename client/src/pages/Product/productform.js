@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { CREATE_PRODUCT, UPDATE_PRODUCT, DELETE_PRODUCT } from '../../utils/mutations';
 import './Carousel.scss';
 import { QUERY_STORES } from '../../utils/queries';
+
 const ProductForm = ({ product, onUpdate, onDelete }) => {
   const questions = [
     { question: 'What is the product name?', key: 'name' },
@@ -15,16 +16,20 @@ const ProductForm = ({ product, onUpdate, onDelete }) => {
 
   const initialValues = product
     ? {
-        name: product.name,
-        description: product.description,
-        price: product.price,
-        quantity: product.quantity,
+        name: product.name || '',
+        description: product.description || '',
+        price: parseFloat(product.price) || '',
+        quantity: parseFloat(product.quantity) || '',
+        category: product.category,
+        image: product.image || '',
       }
     : {
         name: '',
         description: '',
-        price: 0,
-        quantity: 0,
+        price: '',
+        quantity: '',
+        category: '',
+        image: '',
       };
 
   const [values, setValues] = useState(initialValues);
@@ -34,14 +39,14 @@ const ProductForm = ({ product, onUpdate, onDelete }) => {
   const [deleteProduct] = useMutation(DELETE_PRODUCT);
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [storeId, setStoreId] = useState(0)
-  const {loading, data} = useQuery(QUERY_STORES)
-  const stores = data?.stores || []
+  const [storeId, setStoreId] = useState(0);
+  const { loading, data } = useQuery(QUERY_STORES);
+  const stores = useMemo(() => data?.stores || [], [data]);
 
-useEffect(()=>{
-  console.log(stores)
-})
-
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+  
 
   const handleAnswerChange = (key, value) => {
     setValues((prevValues) => ({
@@ -52,12 +57,11 @@ useEffect(()=>{
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-  
+
     const { name, description, price, quantity, category, image } = values;
-  
-    // Obtain the store ID or retrieve it from your application's state
-    // const storeId = '6463f0429a64f0d28eae0004'; // Replace with the actual store ID
-  
+
+    // Check if the required fields are filled in
+
     if (product) {
       // Update product
       await updateProduct({
@@ -66,7 +70,7 @@ useEffect(()=>{
           name,
           description,
           price: parseFloat(price),
-          quantity: parseInt(quantity),
+          quantity: parseFloat(quantity),
           category,
           image,
         },
@@ -79,7 +83,7 @@ useEffect(()=>{
           name,
           description,
           price: parseFloat(price),
-          quantity: parseInt(quantity),
+          quantity: parseFloat(quantity),
           category,
           image,
           storeId,
@@ -88,8 +92,6 @@ useEffect(()=>{
       setValues(initialValues);
     }
   };
-  
-  
 
   const handleDelete = async () => {
     if (window.confirm('Are you sure you want to delete this product?')) {
@@ -116,6 +118,10 @@ useEffect(()=>{
     }
   };
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="product">
       <form onSubmit={handleFormSubmit}>
@@ -129,13 +135,15 @@ useEffect(()=>{
           </button>
         )}
       </form>
-<div>store Id: {storeId}</div>
+      <div>store Id: {storeId}</div>
       <div>
-      {stores &&
-        stores.map((store) => (
-          <div onClick={()=> setStoreId(store._id)}>{store.storeName}</div>
-        ))}
-        </div>
+        {stores &&
+          stores.map((store) => (
+            <div key={store._id} onClick={() => setStoreId(store._id)}>
+              {store.storeName}
+            </div>
+          ))}
+      </div>
       <div className="carousel" id="question-carousel">
         <div className="slides">
           {questions.map((question, index) => (
@@ -150,6 +158,7 @@ useEffect(()=>{
                 className="answer-input"
                 value={values[question.key]}
                 onChange={(e) => handleAnswerChange(question.key, e.target.value)}
+                required // Add the required attribute
               />
             </div>
           ))}
@@ -170,7 +179,3 @@ useEffect(()=>{
 };
 
 export default ProductForm;
-
-
-
-
