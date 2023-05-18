@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
+import React, { useState, useEffect } from 'react';
+import { useQuery, useMutation } from '@apollo/client';
 import { CREATE_PRODUCT, UPDATE_PRODUCT, DELETE_PRODUCT } from '../../utils/mutations';
 import './Carousel.scss';
-
+import { QUERY_STORES } from '../../utils/queries';
 const ProductForm = ({ product, onUpdate, onDelete }) => {
   const questions = [
     { question: 'What is the product name?', key: 'name' },
@@ -34,6 +34,14 @@ const ProductForm = ({ product, onUpdate, onDelete }) => {
   const [deleteProduct] = useMutation(DELETE_PRODUCT);
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [storeId, setStoreId] = useState(0)
+  const {loading, data} = useQuery(QUERY_STORES)
+  const stores = data?.stores || []
+
+useEffect(()=>{
+  console.log(stores)
+})
+
 
   const handleAnswerChange = (key, value) => {
     setValues((prevValues) => ({
@@ -48,7 +56,7 @@ const ProductForm = ({ product, onUpdate, onDelete }) => {
     const { name, description, price, quantity, category, image } = values;
   
     // Obtain the store ID or retrieve it from your application's state
-    const storeId = '6463f0429a64f0d28eae0004'; // Replace with the actual store ID
+    // const storeId = '6463f0429a64f0d28eae0004'; // Replace with the actual store ID
   
     if (product) {
       // Update product
@@ -121,7 +129,13 @@ const ProductForm = ({ product, onUpdate, onDelete }) => {
           </button>
         )}
       </form>
-
+<div>store Id: {storeId}</div>
+      <div>
+      {stores &&
+        stores.map((store) => (
+          <div onClick={()=> setStoreId(store._id)}>{store.storeName}</div>
+        ))}
+        </div>
       <div className="carousel" id="question-carousel">
         <div className="slides">
           {questions.map((question, index) => (
