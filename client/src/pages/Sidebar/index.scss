@@ -5,7 +5,7 @@
   z-index: 3;
   position: absolute;
   top: 0;
-  border-right: white solid .5px;
+  border-right: black solid 2px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -30,7 +30,7 @@
       margin-top: 15px;
       &.active {
           svg {
-            color: green;
+            color: #50C878;
           }
         }
       &:hover {
