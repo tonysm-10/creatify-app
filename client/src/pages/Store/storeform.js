@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { CREATE_STORE, UPDATE_STORE, DELETE_STORE } from '../../mutations';
+import { CREATE_STORE, UPDATE_STORE, DELETE_STORE } from '../../utils/mutations';
 
 const StoreForm = ({ store, onUpdate, onDelete }) => {
   const [storeName, setStoreName] = useState(store ? store.storeName : '');
