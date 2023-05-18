@@ -48,7 +48,7 @@ const ProductForm = ({ product, onUpdate, onDelete }) => {
     const { name, description, price, quantity, category, image } = values;
   
     // Obtain the store ID or retrieve it from your application's state
-    const storeId = YOUR_STORE_ID; // Replace with the actual store ID
+    const storeId = '6463f0429a64f0d28eae0004'; // Replace with the actual store ID
   
     if (product) {
       // Update product
