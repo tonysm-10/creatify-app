@@ -69,6 +69,7 @@ const typeDefs = gql`
       image: String!
       category: String!
       quantity: Float!
+      storeId: String!
     ): Product
     updateProduct(
       productId: ID!
