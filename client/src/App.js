@@ -11,7 +11,7 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import Login from './pages/login/index';
 import Product from './pages/Product/productform'
-import Sidebar from './pages/Sidebar';
+import Sidebar from './pages/Sidebar/index';
 import StoreForm from './pages/Store/storeform';
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
