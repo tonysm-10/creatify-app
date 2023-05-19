@@ -23,6 +23,7 @@ const Home = () => {
       </div>
         );
     }
+
     
     if(!Auth.loggedIn()){
         return (
@@ -49,6 +50,8 @@ const Home = () => {
 
 
 
+
 };
+
 
 export default Home;
