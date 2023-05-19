@@ -4,44 +4,55 @@ import './index.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAdd, faHatCowboySide, faHome, faPersonFalling, faStore } from '@fortawesome/free-solid-svg-icons';
 import logo from '../../logo/logo1.png';
-import './index.scss';
 
+import Auth from '../../utils/auth';
 
 const Sidebar = () => {
+  const isLoggedIn = Auth.loggedIn();
+
   return (
     <div className="navbar">
       <Link className='logo' to='/'>
         <img className='logo' src={logo} alt="logo" />
       </Link>
       <nav className='icon' to='/'>
-      <NavLink exact="true" activeclassname="active" to="/" className='colorIcon'>
+        <NavLink exact activeClassName="active" to="/" className='colorIcon'>
           <FontAwesomeIcon icon={faHome} />
-      </NavLink>
-      <NavLink exact="true" activeclassname="active" className="product-link colorIcon" to="/addProduct">
-        <FontAwesomeIcon icon={faAdd} />
-      </NavLink>
-      <NavLink exact="true" activeclassname="active" className="store-link colorIcon" to="/store">
-        <FontAwesomeIcon icon={faStore} />
-      </NavLink>
-      <NavLink exact="true" activeclassname="active" className="web-link colorIcon" to="/yourWebsite">
-        <FontAwesomeIcon icon={faHatCowboySide} />
-      </NavLink>
-      <NavLink exact="true" activeclassname="active" className="logout-link colorIcon" to="/logout">
-      <FontAwesomeIcon icon={faPersonFalling} />
-      </NavLink>
-      <NavLink exact="true" activeclassname="active" className="login-link" to="/login">
-        Login
-      </NavLink>
-      <NavLink exact="true" activeclassname="active" className="signup-link" to="/signup">
-         Signup
-      </NavLink>
+        </NavLink>
+        {isLoggedIn && (
+          <>
+            <NavLink exact activeClassName="active" className="product-link colorIcon" to="/addProduct">
+              <FontAwesomeIcon icon={faAdd} />
+            </NavLink>
+            <NavLink exact activeClassName="active" className="store-link colorIcon" to="/store">
+              <FontAwesomeIcon icon={faStore} />
+            </NavLink>
+            <NavLink exact activeClassName="active" className="web-link colorIcon" to="/yourWebsite">
+              <FontAwesomeIcon icon={faHatCowboySide} />
+            </NavLink>
+            <NavLink exact activeClassName="active" className="logout-link colorIcon" to="/logout">
+              <FontAwesomeIcon icon={faPersonFalling} />
+            </NavLink>
+          </>
+        )}
+        {!isLoggedIn && (
+          <>
+           <NavLink exact activeClassName="active" className="login-link colorIcon" to="/login">
+            Login
+          </NavLink>
+           <NavLink exact activeClassName="active" className="signup-link colorIcon" to="/signup">
+           Signup
+         </NavLink>
+          </>
+
+        )}
       </nav>
-     </div>
-     
+    </div>
   );
 };
 
 export default Sidebar;
+
 
 
 

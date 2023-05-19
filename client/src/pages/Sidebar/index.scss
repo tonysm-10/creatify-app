@@ -14,6 +14,16 @@
   margin-top: 20px;
   width: 30px;
 }
+.login-link,
+.signup-link {
+  list-style-type: none;
+  text-decoration: none;
+  &:hover {
+    cursor: pointer;
+    
+  }
+}
+
 //dont forget to add the "a"
 .icon{
   display: flex;
