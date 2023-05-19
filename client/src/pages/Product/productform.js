@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { CREATE_PRODUCT, UPDATE_PRODUCT, DELETE_PRODUCT } from '../../utils/mutations';
 import './Carousel.scss';
-import { QUERY_STORES } from '../../utils/queries';
+import { QUERY_USER } from '../../utils/queries';
 
 const ProductForm = ({ product, onUpdate, onDelete }) => {
   const questions = [
@@ -40,8 +40,8 @@ const ProductForm = ({ product, onUpdate, onDelete }) => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [storeId, setStoreId] = useState(0);
-  const { loading, data } = useQuery(QUERY_STORES);
-  const stores = useMemo(() => data?.stores || [], [data]);
+  const { loading, data } = useQuery(QUERY_USER);
+  const stores = useMemo(() => data?.stores?.stores || [], [data]);
 
   useEffect(() => {
     console.log(data);
