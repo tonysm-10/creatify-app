@@ -24,32 +24,32 @@ query Query {
 `
 
 export const QUERY_USER = gql`
-query User($username: String!) {
-  user(username: $username) {
-    _id
-    email
-    password
-    username
-    stores {
+  query User($username: String!) {
+    user(username: $username) {
       _id
-      colorBackground
-      createdAt
       email
-      phoneNumber
-      products {
+      password
+      username
+      stores {
         _id
-        category
-        description
-        image
-        name
-        price
-        quantity
+        colorBackground
+        createdAt
+        email
+        phoneNumber
+        products {
+          _id
+          category
+          description
+          image
+          name
+          price
+          quantity
+        }
       }
     }
-    }
   }
-}
-`
+`;
+
 
 // export const QUERY_THOUGHTS = gql`
 //   query getThoughts {
