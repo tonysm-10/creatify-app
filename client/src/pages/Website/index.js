@@ -8,9 +8,7 @@ const Website = () => {
       <nav className="header">
         <h1>Your Website</h1>
       </nav >
-      <div className='card'>
-        <ProductList />
-      </div>
+
       
     </div>
   );

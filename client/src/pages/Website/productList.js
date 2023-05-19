@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import ProductCard from './productCard';
 import { useQuery } from '@apollo/client';
 import { QUERY_USER } from '../../utils/queries';
+import './card.scss';
+import ProductCard from './productCard';
 
 const ProductList = () => {
   const [username, setUsername] = useState('');
@@ -29,24 +30,39 @@ const ProductList = () => {
     );
   }
 
+  const storeInfo = user.stores[0]?.storeInfo;
+
+  if (!storeInfo) {
+    return <p>Store information not found</p>;
+  }
+
   const products = user.stores.flatMap((store) => store.products);
 
   return (
-    <div className="product-list">
-      {products.map((product) => (
-        <ProductCard
-          key={product._id}
-          name={product.name}
-          description={product.description}
-          price={product.price}
-          quantity={product.quantity}
-          category={product.category}
-          image={product.image}
-        />
-      ))}
+    <div>
+      <h1>{storeInfo.storeName}</h1>
+      <div className="product-list">
+        {products.map((product) => (
+          <ProductCard
+            key={product._id}
+            name={product.name}
+            description={product.description}
+            price={product.price}
+            quantity={product.quantity}
+            category={product.category}
+            image={product.image}
+          />
+        ))}
+      </div>
+      {/* Use storeInfo here */}
+      <footer>
+        <div>{storeInfo.phoneNumber}</div>
+        <div>{storeInfo.email}</div>
+      </footer>
     </div>
   );
 };
 
-export default ProductList;
 
+
+export default ProductList
