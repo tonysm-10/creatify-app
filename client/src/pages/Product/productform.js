@@ -111,7 +111,9 @@ console.log(product)
       setCurrentIndex(nextIndex);
     }
   };
-
+const handleChange = (e) => {
+  setStoreId(e.target.value)
+}
   const handlePrevQuestion = () => {
     const prevIndex = currentIndex - 1;
     if (prevIndex >= 0) {
@@ -136,15 +138,16 @@ console.log(product)
           </button>
         )}
 
-      <div>store Id: {storeId}</div>
-      <div>
+      {/* <div>store Id: {storeId}</div> */}
+      
+      <select onChange={handleChange} value={storeId} style={{position:'absolute', left:'100px',  bottom: '1rem', padding: '0.5rem', borderRadius: '6px', border: '1px solid blue'}}>
         {stores &&
           stores.map((store) => (
-            <div key={store._id} onClick={() => setStoreId(store._id)}>
+            <option key={store._id} value={store._id}>
               {store.storeName}
-            </div>
+            </option>
           ))}
-      </div>
+          </select>
       <div className="carousel" id="question-carousel">
         <div className="slides">
           {questions.map((question, index) => (

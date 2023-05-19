@@ -23,13 +23,13 @@ const Sidebar = () => {
         <FontAwesomeIcon icon={faStore} />
       </NavLink>
       <NavLink exact="true" activeclassname="active" className="login-link" to="/login">
-        <a href='login'>Login</a>
+        Login
       </NavLink>
       <NavLink exact="true" activeclassname="active" className="signup-link" to="/signup">
-        <a href='signup'>Signup</a>
+         Signup
       </NavLink>
       </nav>
-    </div>
+     </div>
   );
 };
 
