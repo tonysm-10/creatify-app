@@ -10,7 +10,7 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import Login from './pages/login/index';
+import Login from './pages/Login/index';
 import Product from './pages/Product/productform'
 import Sidebar from './pages/Sidebar/index';
 import StoreForm from './pages/Store/storeform';

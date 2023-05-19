@@ -2,9 +2,10 @@ import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import './index.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAdd, faHome, faStore } from '@fortawesome/free-solid-svg-icons';
+import { faAdd, faHatCowboySide, faHome, faStore } from '@fortawesome/free-solid-svg-icons';
 import logo from '../../logo/logo1.png';
 import './index.scss';
+
 
 const Sidebar = () => {
   return (
@@ -22,6 +23,9 @@ const Sidebar = () => {
       <NavLink exact="true" activeclassname="active" className="store-link colorIcon" to="/store">
         <FontAwesomeIcon icon={faStore} />
       </NavLink>
+      <NavLink exact="true" activeclassname="active" className="web-link colorIcon" to="/yourWebsite">
+        <FontAwesomeIcon icon={faHatCowboySide} />
+      </NavLink>
       <NavLink exact="true" activeclassname="active" className="login-link" to="/login">
         Login
       </NavLink>
@@ -30,6 +34,7 @@ const Sidebar = () => {
       </NavLink>
       </nav>
      </div>
+     
   );
 };
 
