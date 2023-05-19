@@ -15,6 +15,7 @@ import Product from './pages/Product/productform'
 import Sidebar from './pages/Sidebar/index';
 import StoreForm from './pages/Store/storeform';
 import Signup from './pages/Signup';
+import Website from './pages/Website/index';
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -53,8 +54,10 @@ const App = () => {
         <Route path="/store" element={<StoreForm />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-
+        <Route path="/yourWebsite" element={<Website />} />
       </Routes>
+        
+
     </Router>
     </ApolloProvider>
   );

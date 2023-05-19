@@ -31,7 +31,7 @@ const ProductForm = ({ product, onUpdate, onDelete }) => {
         category: '',
         image: '',
       };
-
+ 
   const [values, setValues] = useState(initialValues);
 
   const [createProduct] = useMutation(CREATE_PRODUCT);
