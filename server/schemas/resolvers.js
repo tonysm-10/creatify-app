@@ -42,12 +42,20 @@ const resolvers = {
         populate:"products"
       });
     },
-    user: async (parent, { storeId }) => {
-      return User.findOne({ _id: storeId }).populate('stores').populate({
+    // user: async (parent, { storeId }) => {
+    //   return User.findOne({ _id: storeId }).populate('stores').populate({
+    //     path:"stores",
+    //     populate:"products"
+    //   });
+    // },
+
+    user: async (parent, { username }) => {
+      return User.findOne({ username }).populate('stores').populate({
         path:"stores",
         populate:"products"
       });
     },
+
 
     me: async (parent, context) => {
       if (context.user) {
