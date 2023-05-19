@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import './index.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAdd, faHatCowboySide, faHome, faStore } from '@fortawesome/free-solid-svg-icons';
+import { faAdd, faHatCowboySide, faHome, faPersonFalling, faStore } from '@fortawesome/free-solid-svg-icons';
 import logo from '../../logo/logo1.png';
 import './index.scss';
 
@@ -25,6 +25,9 @@ const Sidebar = () => {
       </NavLink>
       <NavLink exact="true" activeclassname="active" className="web-link colorIcon" to="/yourWebsite">
         <FontAwesomeIcon icon={faHatCowboySide} />
+      </NavLink>
+      <NavLink exact="true" activeclassname="active" className="logout-link colorIcon" to="/logout">
+      <FontAwesomeIcon icon={faPersonFalling} />
       </NavLink>
       <NavLink exact="true" activeclassname="active" className="login-link" to="/login">
         Login

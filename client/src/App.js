@@ -16,6 +16,7 @@ import Sidebar from './pages/Sidebar/index';
 import StoreForm from './pages/Store/storeform';
 import Signup from './pages/Signup';
 import Website from './pages/Website/index';
+import Logout from './pages/Logout';
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -45,7 +46,6 @@ const client = new ApolloClient({
 const App = () => {
   return (
     <ApolloProvider client={client}>
-            
     <Router>
     <Sidebar />
       <Routes>
@@ -55,10 +55,10 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/yourWebsite" element={<Website />} />
+        <Route path="/logout" element={<Logout />} />
       </Routes>
-        
+      </Router>
 
-    </Router>
     </ApolloProvider>
   );
 };
