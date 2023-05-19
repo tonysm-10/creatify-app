@@ -48,7 +48,6 @@ query User($username: String!) {
     }
     }
   }
-}
 `
 
 // export const QUERY_THOUGHTS = gql`
