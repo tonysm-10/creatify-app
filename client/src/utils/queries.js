@@ -24,31 +24,32 @@ query Query {
 `
 
 export const QUERY_USER = gql`
-  query User($username: String!) {
-    user(username: $username) {
+query User($username: String!) {
+  user(username: $username) {
+    _id
+    username
+    email
+    password
+    stores {
       _id
+      storeName
+      colorBackground
+      phoneNumber
+      storeLogo
       email
-      password
-      username
-      stores {
+      createdAt
+      products {
         _id
-        colorBackground
-        createdAt
-        email
-        phoneNumber
-        products {
-          _id
-          category
-          description
-          image
-          name
-          price
-          quantity
-        }
+        name
+        description
+        price
+        image
+        category
+        quantity
       }
     }
   }
-
+}
 `;
 
 

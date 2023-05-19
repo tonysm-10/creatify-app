@@ -15,8 +15,12 @@ import Product from './pages/Product/productform'
 import Sidebar from './pages/Sidebar/index';
 import StoreForm from './pages/Store/storeform';
 import Signup from './pages/Signup';
-import Website from './pages/Website/index';
+
+import ProductList from './pages/Website/productList';
+
+
 import Logout from './pages/Logout';
+
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -54,8 +58,9 @@ const App = () => {
         <Route path="/store" element={<StoreForm />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/yourWebsite" element={<Website />} />
+        <Route path="/yourWebsite" element={<ProductList />} />
         <Route path="/logout" element={<Logout />} />
+
       </Routes>
       </Router>
 

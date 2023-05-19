@@ -3,7 +3,8 @@ import './productCard.scss'
 
 const ProductCard = ({ name, description, price, quantity, category, image }) => {
   return (
-    <div className="product-card">
+    <div className='container'>
+         <div className="product-card">
       <img src={image} alt={name} />
       <div className='info'>
         <h2>{name}</h2>
@@ -14,6 +15,8 @@ const ProductCard = ({ name, description, price, quantity, category, image }) =>
       </div>
      
     </div>
+    </div>
+ 
   );
 };
 
