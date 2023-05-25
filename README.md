@@ -36,7 +36,8 @@ Moreover, we recognized that efficient user account management is critical for b
 By providing these features in an intuitive and easy-to-use interface, Creatify aims to empower small business owners, allowing them to focus more on their products, their customers, and their business growth. The ultimate goal is to democratize the process of establishing an online store, making eCommerce a feasible and attainable endeavor for all small business owners.
 
   
- LINK TO DEPLOYED APPLICATION: https://lit-beach-30013.herokuapp.com/ 
+ LINK TO DEPLOYED APPLICATION: https://fathomless-crag-99497.herokuapp.com/
+  
   ## License
   This project is licensed under the MIT license. See the [LICENSE](LICENSE) file for details.
   
