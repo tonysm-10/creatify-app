@@ -16,31 +16,31 @@ const Sidebar = () => {
         <img className='logo' src={logo} alt="logo" />
       </Link>
       <nav className='icon' to='/'>
-        <NavLink exact activeClassName="active" to="/" className='colorIcon'>
+        <NavLink exact="true" activeclassname="active" to="/" className='colorIcon'>
           <FontAwesomeIcon icon={faHome} />
         </NavLink>
         {isLoggedIn && (
           <>
-            <NavLink exact activeClassName="active" className="product-link colorIcon" to="/addProduct">
+            <NavLink exact="true" activeclassname="active" className="product-link colorIcon" to="/addProduct">
               <FontAwesomeIcon icon={faAdd} />
             </NavLink>
-            <NavLink exact activeClassName="active" className="store-link colorIcon" to="/store">
+            <NavLink exact="true" activeclassname="active" className="store-link colorIcon" to="/store">
               <FontAwesomeIcon icon={faStore} />
             </NavLink>
-            <NavLink exact activeClassName="active" className="web-link colorIcon" to="/yourWebsite">
+            <NavLink exact="true" activeclassname="active" className="web-link colorIcon" to="/yourWebsite">
               <FontAwesomeIcon icon={faHatCowboySide} />
             </NavLink>
-            <NavLink exact activeClassName="active" className="logout-link colorIcon" to="/logout">
+            <NavLink exact="true" activeclassname="active" className="logout-link colorIcon" to="/logout">
               <FontAwesomeIcon icon={faPersonFalling} />
             </NavLink>
           </>
         )}
         {!isLoggedIn && (
           <>
-           <NavLink exact activeClassName="active" className="login-link colorIcon" to="/login">
+           <NavLink exact="true" activeclassname="active" className="login-link colorIcon" to="/login">
             Login
           </NavLink>
-           <NavLink exact activeClassName="active" className="signup-link colorIcon" to="/signup">
+           <NavLink exact="true" activeclassname="active" className="signup-link colorIcon" to="/signup">
            Signup
          </NavLink>
           </>
