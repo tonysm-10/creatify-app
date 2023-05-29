@@ -31,10 +31,11 @@ const ProductList = () => {
   }
 
   const products = user.stores.flatMap((store) => store.products);
+  const storeinfo = user.stores.flatMap((store) => store.storeinfo);
 
   return (
     <div className='header'>
-      <h1>Your Website</h1>
+      <h1>{storeinfo.storeName}</h1>
       <div className="product-list">
         {products.map((product) => (
           <ProductCard
