@@ -49,8 +49,8 @@ const resolvers = {
     //   });
     // },
 
-    user: async (parent, { username }) => {
-      return User.findOne({ username }).populate('stores').populate({
+    user: async (parent, arg,context) => {
+      return User.findOne({ _id:context.user._id }).populate('stores').populate({
         path:"stores",
         populate:"products"
       });
