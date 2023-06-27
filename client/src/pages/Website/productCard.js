@@ -9,9 +9,12 @@ const ProductCard = ({ name, description, price, quantity, category, image }) =>
       <div className='info'>
         <h2>{name}</h2>
         <p>{description}</p>
-        <p>Price: {price}</p>
-        <p>Quantity: {quantity}</p>
-        <p>Category: {category}</p>
+        <div className='flex'>
+          <p>Price: {price}</p>
+          <p>Quantity: {quantity}</p>
+          <p>Category: {category}</p>
+        </div>
+
       </div>
      
     </div>

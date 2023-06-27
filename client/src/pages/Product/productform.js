@@ -41,7 +41,8 @@ const ProductForm = ({ product, onUpdate, onDelete }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [storeId, setStoreId] = useState(0);
   const { loading, data } = useQuery(QUERY_USER);
-  const stores = useMemo(() => data?.stores?.stores || [], [data]);
+
+  const stores = useMemo(() => data?.user?.stores || [], [data]);
 
   useEffect(() => {
     console.log(data);
