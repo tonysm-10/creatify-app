@@ -1,6 +1,5 @@
 {
-  "name": "tech-friends",
-  "homepage": "https://afternoon-refuge-07657.herokuapp.com",
+  "name": "creatify-app",
   "version": "1.0.0",
   "description": "",
   "main": "server/server.js",
